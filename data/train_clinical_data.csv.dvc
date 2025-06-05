@@ -1,0 +1,5 @@
+outs:
+- md5: 7ea8c256847799c0331200ef0470216a
+  size: 74055
+  hash: md5
+  path: train_clinical_data.csv

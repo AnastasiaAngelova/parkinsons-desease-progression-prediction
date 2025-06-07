@@ -174,9 +174,9 @@ cython_debug/
 .abstra/
 
 # Visual Studio Code
-#  Visual Studio Code specific template is maintained in a separate VisualStudioCode.gitignore 
+#  Visual Studio Code specific template is maintained in a separate VisualStudioCode.gitignore
 #  that can be found at https://github.com/github/gitignore/blob/main/Global/VisualStudioCode.gitignore
-#  and can be added to the global gitignore or merged into this file. However, if you prefer, 
+#  and can be added to the global gitignore or merged into this file. However, if you prefer,
 #  you could uncomment the following to ignore the enitre vscode folder
 # .vscode/
 
@@ -192,3 +192,28 @@ cython_debug/
 #  refer to https://docs.cursor.com/context/ignore-files
 .cursorignore
 .cursorindexingignore
+
+credentials.json
+.dvc/config.local
+
+predictions/
+plots/
+mlflow-artifacts/
+
+*.onnx
+
+outputs/
+
+data/preprocessed_data.csv
+
+mlflow.db
+
+data/preprocessed_data_test.csv
+data/preprocessed_data_train.csv
+data/supplemental_clinical_data.csv
+data/train_clinical_data.csv
+data/train_proteins.csv
+data/example_test_files/test.csv
+data/example_test_files/test_proteins.csv
+
+checkpoints/

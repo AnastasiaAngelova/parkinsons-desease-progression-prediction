@@ -1,0 +1,5 @@
+outs:
+- md5: f77a4e1fbc999a94ad6aa08b3a16ab42
+  size: 7659148
+  hash: md5
+  path: train_proteins.csv

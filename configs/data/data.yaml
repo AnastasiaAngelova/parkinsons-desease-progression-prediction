@@ -1,0 +1,51 @@
+use_dvc: true
+
+train_proteins: "data/train_proteins.csv"
+train_clinical: "data/train_clinical_data.csv"
+supplemental_clinical: "data/supplemental_clinical_data.csv"
+
+target_horizons: [0, 6, 12, 24]
+test_visit_months: [0, 6, 12, 18, 24, 36, 48, 60, 72, 84]
+updrs_parts: [1, 2, 3, 4]
+max_updrs_score: 100
+
+preprocessed_train_data_path: "data/preprocessed_data_train.csv"
+preprocessed_inference_data_path: "data/preprocessed_data_test.csv"
+
+test: "data/example_test_files/test.csv"
+test_proteins: "data/example_test_files/test_proteins.csv"
+
+features:
+  - visit_6m
+  - visit_18m
+  - visit_48m
+  - is_suppl
+  - horizon_scaled
+  - t_month_eq_0
+  - t_month_eq_6
+  - t_month_eq_12
+  - t_month_eq_18
+  - t_month_eq_24
+  - t_month_eq_36
+  - t_month_eq_48
+  - t_month_eq_60
+  - t_month_eq_72
+  - t_month_eq_84
+  - v_month_eq_0
+  - v_month_eq_6
+  - v_month_eq_12
+  - v_month_eq_18
+  - v_month_eq_24
+  - v_month_eq_36
+  - v_month_eq_48
+  - v_month_eq_60
+  - v_month_eq_72
+  - v_month_eq_84
+  - hor_eq_0
+  - hor_eq_6
+  - hor_eq_12
+  - hor_eq_24
+  - target_n_1
+  - target_n_2
+  - target_n_3
+  - target_n_4

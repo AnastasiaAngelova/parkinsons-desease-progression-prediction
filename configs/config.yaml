@@ -1,0 +1,7 @@
+defaults:
+  - _self_
+  - data: data
+  - task: train_lightning
+  - logging: logging
+
+project_name: "parkinsons-prediction"

@@ -1,0 +1,18 @@
+defaults:
+  - _self_
+
+name: infer
+
+mode: inference
+
+lgbm_onnx_path: "onnx_models/parkinsons_lgbm_model.onnx"
+nn_onnx_path: "onnx_models/parkinsons_nn_model.onnx"
+
+use_preprocessing: True
+
+output_path: "predictions"
+save_individual_predictions: true
+
+ensemble_method: "average"
+lgbm_weight: 0.5
+nn_weight: 0.5

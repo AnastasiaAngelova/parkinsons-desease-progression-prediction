@@ -192,3 +192,22 @@ cython_debug/
 #  refer to https://docs.cursor.com/context/ignore-files
 .cursorignore
 .cursorindexingignore
+
+credentials.json
+.dvc/config.local
+
+predictions/
+plots/
+mlflow-artifacts/
+
+*.onnx
+
+outputs/
+
+data/preprocessed_data.csv
+
+mlflow.db
+
+poetry.lock
+poetry.toml
+pyproject.toml

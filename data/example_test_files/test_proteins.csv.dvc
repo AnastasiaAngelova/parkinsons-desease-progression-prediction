@@ -1,0 +1,5 @@
+outs:
+- md5: f87e3db129dd63e06b6c3c8e3e7ed84a
+  size: 14884
+  hash: md5
+  path: test_proteins.csv

@@ -1,0 +1,30 @@
+name: train_lgbm
+
+seed: 42
+mode: train
+
+onnx_path: "onnx_models/parkinsons_lgbm_model.onnx"
+
+test_size: 0.05
+val_size: 0.15
+
+use_preprocessing: True
+target_column: "target_norm"
+
+model:
+  boosting_type: "gbdt"
+  objective: "multiclass"
+  num_class: 87
+  n_estimators: 300
+  learning_rate: 0.02
+  num_leaves: 208
+  max_depth: 14
+  min_data_in_leaf: 850
+  feature_fraction: 0.52
+  lambda_l1: 1e-8
+  lambda_l2: 0.14
+  max_bin: 240
+  verbose: -1
+  force_col_wise: true
+  n_jobs: -1
+

@@ -1,0 +1,31 @@
+defaults:
+  - _self_
+
+use_preprocessing: True
+
+
+name: train_lightning
+seed: 42
+epochs: 1
+batch_size: 128
+num_workers: 1
+target_column: "target_norm"
+
+test_size: 0.05
+val_size: 0.15
+
+accelerator: 'auto'
+devices: 1
+precision: '16-mixed'
+
+onnx_path: "onnx_models/parkinsons_nn_model.onnx" 
+
+mode: train
+
+model:
+  n_hidden: 64
+  n_layers: 2
+  lr: 0.002
+  dropout: 0.1
+  weight_decay: 0.01
+  warmup_steps: 1000

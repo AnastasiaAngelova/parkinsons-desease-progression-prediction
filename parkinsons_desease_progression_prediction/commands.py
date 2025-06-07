@@ -1,11 +1,11 @@
 import hydra
 from omegaconf import DictConfig
 
-from parkinsons_prediction.data.loader import load_data
-from parkinsons_prediction.data.preprocessing import preprocess_data
-from parkinsons_prediction.inference.inference import run_inference
-from parkinsons_prediction.training.train_lgbm import train_lgbm_model
-from parkinsons_prediction.training.train_lightning import train_lightning_model
+from parkinsons_desease_progression_prediction.data.loader import load_data
+from parkinsons_desease_progression_prediction.data.preprocessing import preprocess_data
+from parkinsons_desease_progression_prediction.inference.inference import run_inference
+from parkinsons_desease_progression_prediction.training.train_lgbm import train_lgbm_model
+from parkinsons_desease_progression_prediction.training.train_lightning import train_lightning_model
 
 
 @hydra.main(config_path="../configs", config_name="config", version_base="1.3")

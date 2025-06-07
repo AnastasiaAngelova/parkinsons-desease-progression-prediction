@@ -7,7 +7,7 @@ import pytorch_lightning as pl
 import torch
 import torch.nn as nn
 
-from parkinsons_prediction.utils.metrics import smape_metric
+from parkinsons_desease_progression_prediction.utils.metrics import smape_metric
 
 
 class ParkinsonsLightningModel(pl.LightningModule):

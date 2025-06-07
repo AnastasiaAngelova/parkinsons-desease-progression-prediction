@@ -7,8 +7,8 @@ import onnxruntime as ort
 import pandas as pd
 from omegaconf import DictConfig
 
-from parkinsons_prediction.data.preprocessing import preprocess_data
-from parkinsons_prediction.utils.utils import setup_logging
+from parkinsons_desease_progression_prediction.data.preprocessing import preprocess_data
+from parkinsons_desease_progression_prediction.utils.utils import setup_logging
 
 
 def optimize_smape_predictions(probabilities):

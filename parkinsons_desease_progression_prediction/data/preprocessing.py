@@ -1,6 +1,6 @@
 import pandas as pd
 
-from parkinsons_prediction.data.loader import load_data
+from parkinsons_desease_progression_prediction.data.loader import load_data
 
 
 class ParkinsonsDataPreprocessor:

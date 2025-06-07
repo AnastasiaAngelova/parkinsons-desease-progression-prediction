@@ -14,11 +14,11 @@ from pytorch_lightning.callbacks import (
 )
 from pytorch_lightning.loggers import MLFlowLogger
 
-from parkinsons_prediction.data.preprocessing import preprocess_data
-from parkinsons_prediction.models.lightning_model import ParkinsonsLightningModel
-from parkinsons_prediction.training.dataset import ParkinsonsDataModule
-from parkinsons_prediction.utils.splitting import create_patient_splits
-from parkinsons_prediction.utils.utils import get_git_commit_id, setup_logging
+from parkinsons_desease_progression_prediction.data.preprocessing import preprocess_data
+from parkinsons_desease_progression_prediction.models.lightning_model import ParkinsonsLightningModel
+from parkinsons_desease_progression_prediction.training.dataset import ParkinsonsDataModule
+from parkinsons_desease_progression_prediction.utils.splitting import create_patient_splits
+from parkinsons_desease_progression_prediction.utils.utils import get_git_commit_id, setup_logging
 
 
 def train_lightning_model(config):

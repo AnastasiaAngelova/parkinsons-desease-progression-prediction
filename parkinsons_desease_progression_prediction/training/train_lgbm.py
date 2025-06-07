@@ -10,11 +10,11 @@ import pandas as pd
 from onnxmltools.convert import convert_lightgbm
 from onnxmltools.utils import save_model
 
-from parkinsons_prediction.data.preprocessing import preprocess_data
-from parkinsons_prediction.models.lightgbm_model import LightGBMClassifier
-from parkinsons_prediction.utils.metrics import smape_metric
-from parkinsons_prediction.utils.splitting import create_patient_splits
-from parkinsons_prediction.utils.utils import get_git_commit_id, setup_logging
+from parkinsons_desease_progression_prediction.data.preprocessing import preprocess_data
+from parkinsons_desease_progression_prediction.models.lightgbm_model import LightGBMClassifier
+from parkinsons_desease_progression_prediction.utils.metrics import smape_metric
+from parkinsons_desease_progression_prediction.utils.splitting import create_patient_splits
+from parkinsons_desease_progression_prediction.utils.utils import get_git_commit_id, setup_logging
 
 
 def train_lgbm_model(config):

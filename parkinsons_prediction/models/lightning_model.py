@@ -26,7 +26,6 @@ class ParkinsonsLightningModel(pl.LightningModule):
         super().__init__()
         self.save_hyperparameters()
 
-        # Model architecture
         layers = [nn.Linear(n_features, n_hidden), nn.LeakyReLU(), nn.Dropout(dropout)]
 
         for _ in range(n_layers):
@@ -37,11 +36,9 @@ class ParkinsonsLightningModel(pl.LightningModule):
         self.network = nn.Sequential(*layers)
         self.head = nn.Linear(n_hidden, 1)
 
-        # Store predictions for metrics calculation
         self.validation_step_outputs = []
         self.test_step_outputs = []
 
-        # For plotting
         self.train_losses = []
         self.val_losses = []
         self.val_smapes = []
@@ -66,13 +63,10 @@ class ParkinsonsLightningModel(pl.LightningModule):
         predictions = self(features)
         loss = self.smape_loss(predictions, targets)
 
-        # Log metrics
         self.log("train_loss", loss, on_step=True, on_epoch=True, prog_bar=True)
 
-        # Store for plotting
         self.train_losses.append(loss.item())
 
-        # Log to MLflow
         mlflow.log_metric("train_loss_step", loss.item(), step=self.global_step)
 
         return loss
@@ -85,7 +79,6 @@ class ParkinsonsLightningModel(pl.LightningModule):
         predictions = self(features)
         loss = self.smape_loss(predictions, targets)
 
-        # Store outputs for epoch-end calculations
         self.validation_step_outputs.append(
             {
                 "val_loss": loss,
@@ -103,11 +96,9 @@ class ParkinsonsLightningModel(pl.LightningModule):
         if not self.validation_step_outputs:
             return
 
-        # Aggregate predictions and targets
         all_preds = torch.cat([x["predictions"] for x in self.validation_step_outputs])
         all_targets = torch.cat([x["targets"] for x in self.validation_step_outputs])
 
-        # Calculate SMAPE metric (denormalized)
         preds_denorm = all_preds * 100
         targets_denorm = all_targets * 100
 
@@ -115,29 +106,24 @@ class ParkinsonsLightningModel(pl.LightningModule):
             targets_denorm.float().numpy(), preds_denorm.float().numpy()
         )
 
-        # Calculate additional metrics
         mae = torch.mean(torch.abs(targets_denorm - preds_denorm)).item()
         rmse = torch.sqrt(torch.mean((targets_denorm - preds_denorm) ** 2)).item()
 
-        # Log metrics
         self.log("val_smape", smape_score, prog_bar=True)
         self.log("val_mae", mae)
         self.log("val_rmse", rmse)
 
-        # Store for plotting
         avg_val_loss = torch.mean(
             torch.stack([x["val_loss"] for x in self.validation_step_outputs])
         ).item()
         self.val_losses.append(avg_val_loss)
         self.val_smapes.append(smape_score)
 
-        # Log to MLflow
         mlflow.log_metric("val_loss_epoch", avg_val_loss, step=self.current_epoch)
         mlflow.log_metric("val_smape_epoch", smape_score, step=self.current_epoch)
         mlflow.log_metric("val_mae_epoch", mae, step=self.current_epoch)
         mlflow.log_metric("val_rmse_epoch", rmse, step=self.current_epoch)
 
-        # Clear stored outputs
         self.validation_step_outputs.clear()
 
     def test_step(self, batch, batch_idx):
@@ -148,7 +134,6 @@ class ParkinsonsLightningModel(pl.LightningModule):
         predictions = self(features)
         loss = self.smape_loss(predictions, targets)
 
-        # Store outputs for final calculations
         self.test_step_outputs.append(
             {
                 "test_loss": loss,
@@ -164,11 +149,9 @@ class ParkinsonsLightningModel(pl.LightningModule):
         if not self.test_step_outputs:
             return
 
-        # Aggregate predictions and targets
         all_preds = torch.cat([x["predictions"] for x in self.test_step_outputs])
         all_targets = torch.cat([x["targets"] for x in self.test_step_outputs])
 
-        # Calculate SMAPE metric (denormalized)
         preds_denorm = all_preds * 100
         targets_denorm = all_targets * 100
 

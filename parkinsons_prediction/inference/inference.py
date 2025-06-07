@@ -65,8 +65,6 @@ def predict_with_lgbm_onnx(session, features):
             0
         ]
 
-    logger.info(f"Raw ONNX outputs shape: {outputs.shape}")
-
     if len(outputs.shape) == 2 and outputs.shape[1] > 1:
         probabilities = outputs
         predictions = optimize_smape_predictions(probabilities)
@@ -85,8 +83,6 @@ def predict_with_lgbm_onnx(session, features):
 
 def predict_with_nn_onnx(session, features):
     """Make predictions with Neural Network ONNX model."""
-    logger = logging.getLogger(__name__)
-
     input_name = session.get_inputs()[0].name
     output_name = session.get_outputs()[0].name
 
@@ -94,11 +90,6 @@ def predict_with_nn_onnx(session, features):
 
     predictions = np.round(outputs).astype(int)
     predictions = np.clip(predictions, 0, 4)
-
-    logger.info(
-        f"NN final predictions range: {predictions.min()} - {predictions.max()}"
-    )
-    logger.info(f"NN predictions sample: {predictions[:10]}")
 
     return predictions
 
@@ -168,15 +159,9 @@ def run_inference(cfg: DictConfig):
 
     logger.info("Making predictions with LightGBM model...")
     lgbm_predictions = predict_with_lgbm_onnx(lgbm_session, X_test)
-    logger.info(
-        f"LightGBM predictions range: {lgbm_predictions.min()} - {lgbm_predictions.max()}"
-    )
 
     logger.info("Making predictions with Neural Network model...")
     nn_predictions = predict_with_nn_onnx(nn_session, X_test)
-    logger.info(
-        f"Neural Network predictions range: {nn_predictions.min()} - {nn_predictions.max()}"
-    )
 
     ensemble_method = cfg.task.get("ensemble_method", "average")
 

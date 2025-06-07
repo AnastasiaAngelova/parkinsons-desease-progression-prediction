@@ -208,6 +208,12 @@ data/preprocessed_data.csv
 
 mlflow.db
 
-poetry.lock
-poetry.toml
-pyproject.toml
+data/preprocessed_data_test.csv
+data/preprocessed_data_train.csv
+data/supplemental_clinical_data.csv
+data/train_clinical_data.csv
+data/train_proteins.csv
+data/example_test_files/test.csv
+data/example_test_files/test_proteins.csv
+
+checkpoints/

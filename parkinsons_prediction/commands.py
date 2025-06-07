@@ -1,5 +1,3 @@
-from pathlib import Path
-
 import hydra
 from omegaconf import DictConfig
 
@@ -12,8 +10,6 @@ from parkinsons_prediction.training.train_lightning import train_lightning_model
 
 @hydra.main(config_path="../configs", config_name="config", version_base="1.3")
 def main(cfg: DictConfig):
-    Path(hydra.utils.get_original_cwd()).resolve().chdir()
-
     task = cfg.task.name
 
     if task == "train_lightning":

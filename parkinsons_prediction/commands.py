@@ -1,12 +1,14 @@
-import hydra
-from omegaconf import DictConfig
 from pathlib import Path
 
-from parkinsons_prediction.training.train_lightning import train_lightning_model
-from parkinsons_prediction.training.train_lgbm import train_lgbm_model
+import hydra
+from omegaconf import DictConfig
+
 from parkinsons_prediction.data.loader import load_data
 from parkinsons_prediction.data.preprocessing import preprocess_data
 from parkinsons_prediction.inference.inference import run_inference
+from parkinsons_prediction.training.train_lgbm import train_lgbm_model
+from parkinsons_prediction.training.train_lightning import train_lightning_model
+
 
 @hydra.main(config_path="../configs", config_name="config", version_base="1.3")
 def main(cfg: DictConfig):
@@ -26,6 +28,7 @@ def main(cfg: DictConfig):
         run_inference(cfg)
     else:
         raise ValueError(f"Unknown task: {task}")
+
 
 if __name__ == "__main__":
     main()

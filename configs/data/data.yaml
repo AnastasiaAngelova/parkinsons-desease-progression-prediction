@@ -1,4 +1,4 @@
-use_dvc: true            
+use_dvc: true
 
 train_proteins: "data/train_proteins.csv"
 train_clinical: "data/train_clinical_data.csv"
